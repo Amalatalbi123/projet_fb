@@ -1,0 +1,99 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+data = pd.DataFrame({
+    'Student': ['lina', 'sofyan', 'nada', 'ahmed', 'moad'],  # Noms des étudiants
+    'Study_Hours_Per_Day': [4.5, 5.0, 4.0, 6.0, 3.5],       # Heures d'étude par jour
+    'GPA': [3.8, 4, 3.9, 3.2, 2.8]                        # GPA
+})
+
+# Création d'un diagramme à barres : Heures d'étude par étudiant
+plt.figure(figsize=(5, 3))  # Ajuster la taille du graphique
+plt.bar(data['Student'], data['Study_Hours_Per_Day'], color='red', alpha=0.7)
+
+# Ajouter un titre et des étiquettes
+plt.title('Temps d\'Étude Quotidien par Étudiant', fontsize=8, fontweight='bold')
+plt.xlabel('Étudiant', fontsize=12)
+plt.ylabel('Heures d\'Étude par Jour', fontsize=8)
+
+# Ajouter une grille pour plus de lisibilité
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+# Charger les données
+df = pd.read_csv('/kaggle/input/student-lifestyle-dataset/student_lifestyle_dataset.csv')
+
+# Vérifier si la colonne existe
+if "Sleep_Hours_Per_Day" in df.columns:
+    # Extraire un échantillon de 5 valeurs
+    sample = df["Sleep_Hours_Per_Day"].sample(5)
+    print("Échantillon des heures de sommeil :")
+    print(sample)
+    
+    # Tracer le graphique
+    sample.plot(kind='bar', color='skyblue', figsize=(5, 3), title='Échantillon des heures de sommeil')
+    plt.ylabel("Heures de sommeil")
+    plt.xticks(rotation=0) 
+    plt.show() 
+
+else:
+    print("Erreur : La colonne 'Sleep_Hours_Per_Day' est absente des données.")
+df = pd.read_csv('/kaggle/input/student-lifestyle-dataset/student_lifestyle_dataset.csv')
+df.sample(5)# Chemin vers le fichier CSV
+file_path = '/kaggle/input/student-lifestyle-dataset/student_lifestyle_dataset.csv'
+
+# Vérifier si le fichier existe avant de le charger
+try:
+    df = pd.read_csv(file_path)
+    print("Fichier chargé avec succès.")
+except FileNotFoundError:
+    print(f"Erreur : Le fichier '{file_path}' est introuvable. Vérifiez le chemin et réessayez.")
+    exit()
+except Exception as e:
+    print(f"Erreur lors du chargement du fichier : {e}")
+    exit()
+
+# Afficher un échantillon de 5 lignes pour la colonne "Sleep_Hours_Per_Day"
+if "Sleep_Hours_Per_Day" in df.columns:
+    print("Voici un échantillon de 5 lignes pour le nombre moyen d'heures de sommeil :")
+    print(df["Sleep_Hours_Per_Day"].sample(5))
+else:
+    print("Erreur : La colonne 'Sleep_Hours_Per_Day' est absente des données.")
+# Charger les données
+df = pd.read_csv('/kaggle/input/student-lifestyle-dataset/student_lifestyle_dataset.csv')
+
+# Vérifier si la colonne existe
+if "Sleep_Hours_Per_Day" in df.columns:
+    # Extraire un échantillon de 5 valeurs
+    sample = df["Sleep_Hours_Per_Day"].sample(5)
+    print("Échantillon des heures de sommeil :")
+    print(sample)
+    
+    # Tracer le graphique
+    sample.plot(kind='bar', color='skyblue', figsize=(5, 5), title='Échantillon des heures de sommeil')
+    plt.ylabel("Heures de sommeil")
+    plt.xticks(rotation=0)
+    plt.show()
+else:
+    print("Erreur : La colonne 'Sleep_Hours_Per_Day' est absente des données.")
+# Vérifier si le fichier existe avant de le charger
+try:
+    df = pd.read_csv(file_path)
+    print("Fichier chargé avec succès.")
+except FileNotFoundError:
+    print(f"Erreur : Le fichier '{file_path}' est introuvable. Vérifiez le chemin et réessayez.")
+    exit()
+except Exception as e:
+    print(f"Erreur lors du chargement du fichier : {e}")
+    exit()
+
+# Afficher un échantillon de 5 lignes du DataFrame
+print("Voici un échantillon de 5 lignes des données :")
+print(df.sample(5))
+
+# Afficher un aperçu des colonnes disponibles
+print("\nColonnes disponibles dans les données :")
+print(df.columns)
+
+# (Optionnel) Visualiser un échantillon aléatoire avec Matplotlib
+df.sample(5).plot(kind='bar', figsize=(10, 5), title='Échantillon des données')
+plt.show()
